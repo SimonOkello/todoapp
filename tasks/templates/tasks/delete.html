@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Delete{% endblock title %}
+{% block content %}
+<h2>Delete Task</h2>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{obj}}"?</p>
+    <div class="field is-grouped">
+        <div class="control">
+            <input type="submit" class="button is-primary is-light" name="submit">
+        </div>
+        <div class="control">
+            <a href="{% url 'tasks:todo-list' %}" class="button is-link is-light">Cancel</a>
+        </div>
+    </div>
+</form>
+{% endblock content %}

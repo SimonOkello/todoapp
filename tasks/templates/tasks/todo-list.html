@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<h1><b>ToDo App</b></h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="field">
+        <div class="control">
+            {{form.title}}
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            {{form.description}}
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <input type="submit" class="button is-primary is-light" name="submit">
+        </div>
+    </div>
+</form>
+<br>
+{% for task in tasks %}
+<div class="box">
+    <article class="media">
+        <div class="media-left">
+
+        </div>
+        <div class="media-content">
+            {% if task.complete %}
+            <strike>
+                <p>
+                    <b>{{task.title}}</b>
+                </p>
+                <span>{{task.description}}</span>
+            </strike>
+            {% else %}
+            <b>
+                <p>{{task.title}}</p>
+            </b>
+            <span>{{task.description}}</span>
+            {% endif %}
+        </div>
+        <span class="icon is-pulled-right">
+            <a href="{% url 'tasks:update-todo' task.id %}">
+                <i class="fas fa-pen"></i>
+            </a>
+        </span>
+        <span class="icon is-pulled-right">
+            <a href="{% url 'tasks:delete-todo' task.id %}">
+                <i class="fas fa-trash"></i>
+            </a>
+        </span>
+    </article>
+
+</div>
+{% endfor %}
+{% endblock content %}

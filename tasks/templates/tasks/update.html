@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Update{% endblock title %}
+{% block content %}
+<h2>Update Task</h2>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="field">
+        <div class="control">
+            {{form.title}}
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            {{form.description}}
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <label class="checkbox">
+                <input type="checkbox" name="complete"  {% if obj.complete %}checked{% endif %}>
+                Mark as Complete
+            </label>
+        </div>
+    </div>
+    <div class="field is-grouped">
+        <div class="control">
+            <input type="submit" class="button is-primary is-light" name="submit">
+        </div>
+        <div class="control">
+            <a href="{% url 'tasks:todo-list' %}" class="button is-link is-light">Cancel</a>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}
